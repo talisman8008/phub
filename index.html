@@ -52,7 +52,7 @@
                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10"></div>
                 <div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000">
                 <img src="assets/elden.png"
-                     class="w-full h-full object-cover opacity-60 bg-radial-[at_25%_25%] from-white to-zinc-900 to-75% group-hover:scale-105 transition-transform duration-1000"
+                     class="w-full h-full object-cover opacity-60  group-hover:scale-105 opacity-50 transition-transform duration-1000"
                      alt="Elden Ring Hero"></div>
 
                 <div class="absolute bottom-10 left-10 z-20">
@@ -68,19 +68,20 @@
         </section>
 
         <section>
-            <h3 class="text-[10px] font-bold tracking-[0.3em] text-slate-500 uppercase mb-8">Personalized Discovery</h3>
+            <h3 class="text-[18px] font-bold tracking-[0.3em] text-slate-500 uppercase mb-8">Personalized Discovery</h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="game-grid">
             </div>
         </section>
     </main>
 
-    <aside class="w-80 bg-black/40 border-l border-white/5 p-10 flex flex-col">
-        <h2 class="text-lg font-black italic uppercase mb-10 tracking-widest">Social Lobby</h2>
-        <div class="space-y-8 flex-1" id="social-list">
-        </div>
-        <div class="p-6 bg-gradient-to-br from-blue-900/20 to-transparent rounded-[32px] border border-blue-500/20">
-            <p class="text-[9px] text-blue-400 font-black uppercase mb-2 tracking-widest">Gamification Tip</p>
-            <p class="text-xs text-slate-400 leading-relaxed">Play with **Viper_01** today to earn a 2x XP Party Boost!</p>
+    <aside class="w-64 bg-black/40 border-l border-white/5 p-6 flex flex-col shrink-0">
+        <h2 class="text-xl text-center font-black italic uppercase mb-8 tracking-[0.2em] text-blue-500">Friends</h2>
+
+        <div class="space-y-6 flex-1" id="social-list"></div>
+
+        <div class="p-5 bg-gradient-to-br from-blue-900/20 to-transparent rounded-[24px] border border-blue-500/10 mt-auto">
+            <p class="text-[13px] text-blue-400 font-black uppercase mb-2 tracking-widest">Community Quest</p>
+            <p class="text-[11px] text-slate-400 leading-tight">Join **Viper_01** to unlock the 2x XP Party Boost.</p>
         </div>
     </aside>
 </div>
