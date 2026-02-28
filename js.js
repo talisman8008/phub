@@ -181,25 +181,29 @@ const newGamesData = [
         title: "Stellar Blade",
         tag: "Action Adventure",
         desc: "Reclaim Earth for humankind in this blade-wielding combat journey.",
-        image: "assets/MarathonStand.jpg"
+        image: "assets/MarathonStand.jpg",
+        cost: "$59.99"
     },
     {
         title: "Rise of the Ronin",
         tag: "Open World RPG",
         desc: "Embark on an epic journey across 19th-century Japan in this combat-focused open-world action RPG.",
-        image: "assets/ronin.webp"
+        image: "assets/ronin.webp",
+        cost: "$69.99"
     },
     {
         title: "Dragon's Dogma 2",
         tag: "RPG",
         desc: "The deep, explorable fantasy world of Dragon's Dogma 2 awaits you.",
-        image: "assets/dogma.jpg"
+        image: "assets/dogma.jpg",
+        cost: "$49.99"
     },
     {
         title: "Gran Turismo 7",
         tag: "Racing",
         desc: "Experience the complete Real Driving Simulator with 400+ cars and legendary tracks.",
-        image: "assets/Gran Turismo 7.jpg"
+        image: "assets/Gran Turismo 7.jpg",
+        cost: "$39.99"
     }
 ];
 
@@ -214,6 +218,8 @@ function renderNewGames() {
                 <img src="${game.image}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
             </div>
             <h4 class="font-bold italic uppercase text-xs tracking-tighter truncate">${game.title}</h4>
+            <p class="text-[10px] text-slate-400 mt-1 leading-snug line-clamp-2">${game.desc}</p>
+            <p class="text-[11px] font-black text-blue-400 mt-2">${game.cost}</p>
         </div>
     `).join('');
 }
