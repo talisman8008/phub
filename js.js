@@ -55,6 +55,8 @@ function renderDiscoveryGrid() {
                 <h4 class="font-black italic uppercase text-lg leading-tight tracking-tighter">${game.title}</h4>
                 <span class="text-[9px] font-bold text-blue-500 bg-blue-500/10 px-2 py-1 rounded-full border border-blue-500/20">${game.match}</span>
             </div>
+            
+            
             <p class="text-[10px] text-slate-500 uppercase tracking-[0.2em] mb-4">${game.type}</p>
             <div class="flex justify-between items-center pt-4 border-t border-white/5">
                 <span class="text-[9px] font-black text-slate-400 uppercase">Gain Potential: <span class="text-white">${game.xp}</span></span>
@@ -136,30 +138,42 @@ if (mainArea && auraFill) {
 }
 
 // 6. Gamification: Real-time Level Progress simulation
+// js.js
+
+// Function to handle the gamified level up
 function triggerLevelUp() {
     const bar = document.getElementById('xp-bar');
+    const levelText = document.getElementById('level-text');
     const title = document.getElementById('main-title');
 
-    if (bar) {
-        bar.style.width = '95%';
-        bar.classList.add('animate-pulse');
+    if (bar && levelText && title) {
+        // 1. Animate the bar
+        bar.style.width = '100%';
+        bar.style.boxShadow = '0 0 20px #60a5fa'; // Blue Aura pulse
 
-        if (title) {
-            const originalText = title.innerText;
-            title.innerText = "QUEST TRACKED! +200 XP";
+        // 2. Play subtle haptic feedback (DualSense metaphor)
+        if (window.navigator.vibrate) {
+            window.navigator.vibrate(); // Short pulse
+        }
+
+        // 3. Update Text and Title
+        setTimeout(() => {
+            title.innerText = "LEVEL UP! +200 XP";
             title.style.color = "#3b82f6";
+            title.style.transform = "scale(1.1)";
 
             setTimeout(() => {
-                title.innerText = originalText;
+                levelText.innerText = "LEVEL 43"; // Simulate increase
+                bar.style.width = '20%'; // Reset bar for next level
+                bar.style.boxShadow = '0 0 10px #2563eb';
+
+                title.innerText = "The Latest";
                 title.style.color = "white";
-                bar.classList.remove('animate-pulse');
+                title.style.transform = "scale(1)";
             }, 2500);
-        }
+        }, 1000);
     }
 }
-
-
-
 
 // New Games Data
 const newGamesData = [
@@ -210,14 +224,17 @@ function openModal(index) {
     const modal = document.getElementById('game-modal');
     const container = document.getElementById('modal-container');
 
-    // Fill Data
+    // data updation
     document.getElementById('modal-img').src = game.image;
     document.getElementById('modal-title').innerText = game.title;
     document.getElementById('modal-tag').innerText = game.tag;
     document.getElementById('modal-desc').innerText = game.desc;
 
     // Show Modal
+    document.body.classList.add('modal-open'); // Adds the blur effect
     modal.classList.remove('hidden');
+
+    // Smooth Animation
     setTimeout(() => {
         container.classList.remove('scale-95', 'opacity-0');
         container.classList.add('scale-100', 'opacity-100');
@@ -233,9 +250,9 @@ function closeModal() {
 
     setTimeout(() => {
         modal.classList.add('hidden');
+        document.body.classList.remove('modal-open');
     }, 300);
 }
-
 // DomContentLoaded Update
 document.addEventListener('DOMContentLoaded', () => {
     // ... baki calls ...
