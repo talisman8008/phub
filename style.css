@@ -18,7 +18,14 @@
 h1, h2, h3, h4 {
     letter-spacing: -0.02em;
 }
+/* Style.css */
+#sidebar-nav, aside {
+    isolation: isolate; /* Ensures internal z-indexes stay inside the container */
+}
 
+#game-modal {
+    pointer-events: auto; /* Modal ke piche click nahi hona chahiye jab open ho */
+}
 /*progress bar stylin*/
 #xp-bar {
     background: linear-gradient(90deg, #2563eb, #60a5fa);

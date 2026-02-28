@@ -145,3 +145,87 @@ function triggerLevelUp() {
         }
     }
 }
+
+
+
+
+// New Games Data
+const newGamesData = [
+    {
+        title: "Stellar Blade",
+        tag: "Action Adventure",
+        desc: "Reclaim Earth for humankind in this blade-wielding combat journey.",
+        image: "assets/MarathonStand.jpg"
+    },
+    {
+        title: "Rise of the Ronin",
+        tag: "Open World RPG",
+        desc: "Embark on an epic journey across 19th-century Japan in this combat-focused open-world action RPG.",
+        image: "assets/ronin.webp"
+    },
+    {
+        title: "Dragon's Dogma 2",
+        tag: "RPG",
+        desc: "The deep, explorable fantasy world of Dragon's Dogma 2 awaits you.",
+        image: "assets/dogma.jpg"
+    },
+    {
+        title: "Gran Turismo 7",
+        tag: "Racing",
+        desc: "Experience the complete Real Driving Simulator with 400+ cars and legendary tracks.",
+        image: "assets/Gran Turismo 7.jpg"
+    }
+];
+
+// Function to Render New Games Grid
+function renderNewGames() {
+    const grid = document.getElementById('new-games-grid');
+    if (!grid) return;
+
+    grid.innerHTML = newGamesData.map((game, index) => `
+        <div class="group cursor-pointer" onclick="openModal(${index})">
+            <div class="aspect-[3/4] rounded-[24px] overflow-hidden mb-4 border border-white/5 group-hover:border-blue-500/50 transition-all">
+                <img src="${game.image}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+            </div>
+            <h4 class="font-bold italic uppercase text-xs tracking-tighter truncate">${game.title}</h4>
+        </div>
+    `).join('');
+}
+
+// Modal Logic
+function openModal(index) {
+    const game = newGamesData[index];
+    const modal = document.getElementById('game-modal');
+    const container = document.getElementById('modal-container');
+
+    // Fill Data
+    document.getElementById('modal-img').src = game.image;
+    document.getElementById('modal-title').innerText = game.title;
+    document.getElementById('modal-tag').innerText = game.tag;
+    document.getElementById('modal-desc').innerText = game.desc;
+
+    // Show Modal
+    modal.classList.remove('hidden');
+    setTimeout(() => {
+        container.classList.remove('scale-95', 'opacity-0');
+        container.classList.add('scale-100', 'opacity-100');
+    }, 10);
+}
+
+function closeModal() {
+    const modal = document.getElementById('game-modal');
+    const container = document.getElementById('modal-container');
+
+    container.classList.add('scale-95', 'opacity-0');
+    container.classList.remove('scale-100', 'opacity-100');
+
+    setTimeout(() => {
+        modal.classList.add('hidden');
+    }, 300);
+}
+
+// DomContentLoaded Update
+document.addEventListener('DOMContentLoaded', () => {
+    // ... baki calls ...
+    renderNewGames();
+});
