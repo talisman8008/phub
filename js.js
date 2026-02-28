@@ -5,21 +5,24 @@ const gameData = [
         type: "Action RPG",
         match: "92% Match",
         xp: "450 XP",
-        image: "assets/ghost.jpg"
+        image: "assets/ghost.jpg",
+        aiReason: "Your Bloodborne Platinum and high samurai-genre playtime make this a perfect fit. Fluid combat with deep exploration mirrors your preferred playstyle."
     },
     {
         title: "Spider-Man 2",
         type: "Adventure",
         match: "88% Match",
         xp: "120 XP",
-        image: "assets/spider.jpg"
+        image: "assets/spider.jpg",
+        aiReason: "Based on your love of traversal-heavy open worlds and combo-driven combat, Spider-Man 2's web-swinging and dual-hero system aligns closely with your habits."
     },
     {
         title: "God of War",
         type: "Action",
         match: "75% Match",
         xp: "600 XP",
-        image: "assets/god.jpg"
+        image: "assets/god.jpg",
+        aiReason: "Your high completion rate in narrative action titles and affinity for boss-heavy challenges signals this epic mythological saga will keep you hooked."
     }
 ];
 
@@ -56,6 +59,15 @@ function renderDiscoveryGrid() {
             <div class="flex justify-between items-center pt-4 border-t border-white/5">
                 <span class="text-[9px] font-black text-slate-400 uppercase">Gain Potential: <span class="text-white">${game.xp}</span></span>
                 <button onclick="triggerLevelUp()" class="text-[9px] bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-xl font-bold uppercase transition-all shadow-lg shadow-blue-900/20">Track</button>
+            </div>
+            <div class="ai-hover-overlay">
+                <div class="ai-hover-eyebrow">
+                    <span>✦ AI PICK</span>
+                    <span class="ai-hover-badge">${game.match}</span>
+                </div>
+                <div class="ai-hover-title">${game.title}</div>
+                <div class="ai-hover-reason">${game.aiReason}</div>
+                <button onclick="triggerLevelUp()" class="ai-hover-btn">Track Game →</button>
             </div>
         </div>
     `).join('');

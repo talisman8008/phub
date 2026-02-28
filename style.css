@@ -43,3 +43,89 @@ h1, h2, h3, h4 {
     0% { transform: translateX(-100%); }
     100% { transform: translateX(100%); }
 }
+/* AI Hover Overlay */
+.ai-hover-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    background: rgba(2, 6, 30, 0.94);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border-radius: 32px;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s;
+}
+
+.game-card:hover .ai-hover-overlay {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.ai-hover-eyebrow {
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #3b82f6;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ai-hover-badge {
+    background: rgba(59, 130, 246, 0.15);
+    color: #60a5fa;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 8px;
+}
+
+.ai-hover-title {
+    font-size: 13px;
+    font-weight: 900;
+    font-style: italic;
+    text-transform: uppercase;
+    color: #fff;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+    line-height: 1.3;
+}
+
+.ai-hover-reason {
+    font-size: 11px;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.58);
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.ai-hover-btn {
+    margin-top: 14px;
+    width: 100%;
+    padding: 9px;
+    border-radius: 12px;
+    background: rgba(37, 99, 235, 0.18);
+    color: #60a5fa;
+    border: 1px solid rgba(37, 99, 235, 0.35);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: opacity 0.2s, background 0.2s;
+}
+
+.ai-hover-btn:hover {
+    opacity: 0.85;
+    background: rgba(37, 99, 235, 0.28);
+}
