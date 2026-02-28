@@ -1,199 +1,156 @@
-/* Custom Cursor */
+/**
+ * PlayStation Reimagined - Master Stylesheet
+ * Optimized for ASUS TUF F15 High-Refresh Display
+ */
+
+/* --- 1. Core Reset & Custom Scrollbar --- */
 *, *::before, *::after {
-    cursor: url('https://cur.cursors-4u.net/cursors/cur-2/cur116.cur'), auto;
+    box-sizing: border-box;
+    cursor: url('https://cur.cursors-4u.net/cursors/cur-2/cur116.cur'), auto; /* Premium Gaming Cursor */
 }
 
-a, button, [role="button"], .cursor-pointer, select, label {
-    cursor: url('https://cur.cursors-4u.net/cursors/cur-2/cur117.cur'), pointer !important;
+body.modal-open {
+    overflow: hidden; /* Prevent background scroll when overlays are active */
 }
-/* Custom Scrollbar */
+
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: #000; }
 ::-webkit-scrollbar-thumb { background: #1a1a1a; border-radius: 10px; }
 
-/* Immersive Glows */
-.game-card {
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+/* --- 2. Stacking Contexts & Z-Index Safety --- */
+#sidebar-nav, aside {
+    isolation: isolate; /* Ensures icons stay inside their container and don't peek through overlays */
+}
+
+/* Blur effect for background elements when an overlay is active */
+body.modal-open main,
+body.modal-open #sidebar-nav,
+body.modal-open aside {
+    filter: blur(12px) grayscale(40%);
+    opacity: 0.3;
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+
+/* --- 3. Gamified Animations (The Pulse & Glow) --- */
+
+/* Button Neural Pulse (DualSense Haptic Metaphor) */
+@keyframes buttonPulse {
+    0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.6); }
+    70% { box-shadow: 0 0 0 12px rgba(37, 99, 235, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+}
+
+/* Card Boundary Glow */
+@keyframes boundaryGlow {
+    0%, 100% { border-color: rgba(255, 255, 255, 0.1); }
+    50% { border-color: rgba(37, 99, 235, 0.8); box-shadow: 0 0 15px rgba(37, 99, 235, 0.3); }
+}
+
+/* PS Plus Golden Aura */
+@keyframes goldPulse {
+    0%, 100% { border-color: rgba(234, 179, 8, 0.2); }
+    50% { border-color: rgba(234, 179, 8, 0.8); box-shadow: 0 0 25px rgba(234, 179, 8, 0.3); }
+}
+
+/* Progress Bar Shine */
+@keyframes shine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* --- 4. Interactive Component Classes --- */
+
+.btn-gamified:hover {
+    animation: buttonPulse 1.5s infinite;
+    transform: translateY(-2px) scale(1.02);
 }
 
 .game-card:hover {
     transform: translateY(-10px);
     background-color: rgba(255, 255, 255, 0.08);
-    border-color: rgba(37, 99, 235, 0.4);
+    animation: boundaryGlow 2s infinite ease-in-out;
 }
 
-/* Text Polish */
-h1, h2, h3, h4 {
-    letter-spacing: -0.02em;
+.ps-plus-card:hover {
+    animation: goldPulse 2s infinite ease-in-out;
 }
 
-/*progress bar stylin*/
+/* Progress Bar (XP System) */
 #xp-bar {
     background: linear-gradient(90deg, #2563eb, #60a5fa);
     position: relative;
+    overflow: hidden;
 }
 
-#game-modal {
-    background-color: rgba(0, 0, 0, 0.9); /* Makes sure nothing peeks through */
-}
-
-/* Ensure icons don't fight with the modal */
-.nav-icon, #social-list img {
-    pointer-events: auto;
-}
-
-/* Modal open hone par icons ko blur kar do (Optional but looks Pro) */
-body.modal-open #sidebar-nav, body.modal-open aside {
-    filter: blur(4px) grayscale(50%);
-    opacity: 0.5;
-}
-
-
-
-/* pulse animation for the progress bar */
 #xp-bar::after {
     content: '';
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
     animation: shine 2s infinite;
 }
 
-@keyframes shine {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
+/* --- 5. Page Transitions & Overlays --- */
+
+#expanded-store, #achievement-page, #community-page {
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    background: rgba(2, 2, 2, 0.98);
+    backdrop-filter: blur(20px);
 }
-/* AI Hover Overlay */
+
+/* State: Sliding in from Right/Bottom */
+.active-page {
+    transform: translate(0, 0) !important;
+}
+
+/* AI Discovery Hover Overlay */
 .ai-hover-overlay {
     position: absolute;
     inset: 0;
     z-index: 20;
-    background: rgba(2, 6, 30, 0.94);
+    background: rgba(2, 6, 30, 0.96);
     backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    padding: 20px;
+    padding: 24px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     border-radius: 32px;
-    transform: translateY(100%);
+    transform: translateY(102%); /* Hidden below */
     opacity: 0;
-    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.game-card:hover .ai-hover-overlay {
+.group:hover .ai-hover-overlay {
     transform: translateY(0);
     opacity: 1;
 }
 
-.ai-hover-eyebrow {
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: #3b82f6;
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+/* --- 6. GitHub-style Heatmap Grid --- */
+
+#playtime-heatmap {
+    grid-template-columns: repeat(52, 1fr); /* 52 weeks in a year */
 }
 
-.ai-hover-badge {
-    background: rgba(59, 130, 246, 0.15);
-    color: #60a5fa;
-    border: 1px solid rgba(59, 130, 246, 0.3);
-    padding: 2px 8px;
-    border-radius: 6px;
-    font-size: 10px;
+.day-sq {
+    width: 14px;
+    height: 14px;
+    border-radius: 2px;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.ai-hover-title {
-    font-size: 18px;
-    font-weight: 900;
-    font-style: italic;
-    text-transform: uppercase;
-    color: #fff;
-    letter-spacing: -0.02em;
-    margin-bottom: 10px;
-    line-height: 1.3;
+.day-sq:hover {
+    transform: scale(1.6);
+    z-index: 50;
+    box-shadow: 0 0 10px #3b82f6;
 }
 
-.ai-hover-reason {
-    font-size: 13px;
-    line-height: 1.65;
-    color: rgba(255, 255, 255, 0.58);
-    flex: 1;
-    display: -webkit-box;
-    -webkit-line-clamp: 5;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+/* Vertical timeline node pulse */
+@keyframes nodePulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.8; box-shadow: 0 0 20px #2563eb; }
 }
 
-.ai-hover-btn {
-    margin-top: 14px;
-    width: 100%;
-    padding: 9px;
-    border-radius: 12px;
-    background: rgba(37, 99, 235, 0.18);
-    color: #60a5fa;
-    border: 1px solid rgba(37, 99, 235, 0.35);
-    font-size: 9px;
-    font-weight: 800;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: opacity 0.2s, background 0.2s;
-}
-
-.ai-hover-btn:hover {
-    opacity: 0.85;
-    background: rgba(37, 99, 235, 0.28);
-}
-
-
-/*button animation*/
-/* style.css */
-
-/* Neural Pulse Animation for Hover */
-@keyframes buttonPulse {
-    0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.6); }
-    70% { box-shadow: 0 0 0 10px rgba(37, 99, 235, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
-}
-
-/* Button with implicit interaction */
-.btn-gamified {
-    position: relative;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-.btn-gamified:hover {
-    transform: translateY(-3px) scale(1.03);
-    animation: buttonPulse 1.5s infinite;
-    background-color: #3b82f6 !important; /* Blue Aura color */
-}
-
-/* DualSense Click Feedback (Active state) */
-.btn-gamified:active {
-    transform: translateY(1px) scale(0.98);
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-/*card animation*/
-/* Game Card Reaction */
-@keyframes cardBoundaryPulse {
-    0%, 100% { border-color: rgba(255, 255, 255, 0.1); }
-    50% { border-color: rgba(37, 99, 235, 0.6); }
-}
-
-.game-card-gamified {
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    isolation: isolate;
-}
-
-.game-card-gamified:hover {
-    transform: translateY(-8px) scale(1.02);
-    background-color: rgba(255, 255, 255, 0.08) !important;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
-    animation: cardBoundaryPulse 2s infinite ease-in-out;
+#achievement-timeline > div:first-child .w-6 {
+    animation: nodePulse 2s infinite ease-in-out;
 }

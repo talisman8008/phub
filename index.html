@@ -9,38 +9,27 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-black text-white font-sans overflow-hidden">
-<div class="flex h-screen">
-    <nav id="sidebar-nav" class="relative w-20  bg-[#020202] border-r border-white/5 flex flex-col items-center py-10 space-y-12 shrink-0 overflow-hidden">
+<div class="flex h-screen relative">
 
+    <nav id="sidebar-nav" class="relative w-20 z-30 bg-[#020202] border-r border-white/5 flex flex-col items-center py-10 space-y-12 shrink-0 overflow-hidden">
         <div id="nav-scroll-fill" class="absolute top-0 left-0 w-full bg-blue-600/10 border-r-2 border-blue-500 transition-all duration-300 ease-out z-0" style="height: 0%;"></div>
-
         <div class="z-10 w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center font-black shadow-[0_0_20px_#2563eb] cursor-pointer">
             <i class="fa-brands fa-playstation fa-lg" style="color: white;"></i>
         </div>
-
         <div class="z-10 flex flex-col gap-12 text-xl">
-        <span class="nav-icon opacity-30 transition-all duration-300">
-            <i class="fa-regular fa-house" style="color: white;"></i>
-        </span>
-            <span class="nav-icon opacity-100 text-blue-500 transition-all duration-300">
-            <i class="fa-solid fa-wand-sparkles" style="color: rgb(244, 244, 244);"></i>
-        </span>
-            <span class="nav-icon opacity-30 transition-all duration-300">
-            <i class="fa-solid fa-medal" style="color: white;"></i>
-        </span>
-            <span class="nav-icon opacity-30 transition-all duration-300">
-            <i class="fa-solid fa-people-roof" style="color: white;"></i>
-        </span>
+            <span class="nav-icon opacity-30 transition-all duration-300"><i class="fa-regular fa-house"></i></span>
+            <span class="nav-icon opacity-100 text-blue-500 transition-all duration-300"><i class="fa-solid fa-wand-sparkles"></i></span>
+            <span class="nav-icon opacity-30 cursor-pointer transition-all hover:text-blue-400" onclick="toggleAchievements(true)"><i class="fa-solid fa-medal"></i></span>
+            <span class="nav-icon opacity-30 cursor-pointer transition-all hover:text-blue-400" onclick="toggleCommunity(true)"><i class="fa-solid fa-people-roof"></i></span>
         </div>
     </nav>
 
-    <main class="flex-1 p-12 overflow-y-auto bg-gradient-to-tr from-black via-[#080c14] to-black">
+    <main class="flex-1 min-h-0 p-12 overflow-y-auto bg-gradient-to-tr from-black via-[#080c14] to-black z-0">
         <header class="flex justify-between items-end mb-12">
             <div>
                 <h1 id="main-title" class="text-5xl font-black italic tracking-tighter uppercase transition-all duration-500">The Latest</h1>
                 <p class="text-blue-500 font-bold tracking-[0.4em] text-[10px] mt-2 uppercase">AI-Optimized for Devesh</p>
             </div>
-            <!--    progress bar-->
             <div class="flex items-center gap-6 bg-white/5 px-6 py-4 rounded-[24px] border border-white/10 backdrop-blur-md">
                 <div class="text-right">
                     <p class="text-[9px] text-slate-500 font-bold uppercase tracking-widest">Next Rank: Diamond</p>
@@ -55,79 +44,154 @@
         <section class="mb-16">
             <div class="relative group h-[400px] rounded-[40px] overflow-hidden border border-white/10 cursor-pointer shadow-2xl transition-all hover:border-blue-500/50">
                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10"></div>
-                <div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000">
-                    <img src="assets/elden.png"
-                         class="w-full h-full object-cover opacity-60  group-hover:scale-105 opacity-50 transition-transform duration-1000"
-                         alt="Elden Ring Hero"></div>
-
+                <img src="assets/elden.png" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-1000" alt="Elden Ring">
                 <div class="absolute bottom-10 left-10 z-20">
                     <div class="bg-blue-600 text-[9px] font-black px-3 py-1 rounded-full mb-4 inline-block tracking-widest uppercase italic">98% Compatibility Match</div>
                     <h2 class="text-4xl font-black italic uppercase mb-2">Elden Ring: Shadow of the Erdtree</h2>
                     <p class="text-slate-400 max-w-md text-sm mb-6 leading-relaxed">Based on your Bloodborne Platinum, this expansion offers massive XP gains.</p>
-                    <div class="flex gap-4">
-                        <button class="btn-gamified bg-white text-black px-8 py-3 rounded-xl font-bold hover:bg-blue-600 hover:text-white transition-all uppercase text-[10px] tracking-widest">Pre-Order</button>
-                        <button class="bg-white/10 backdrop-blur-md px-8 py-3 rounded-xl font-bold border border-white/10 hover:bg-white/20 transition-all uppercase text-[10px] tracking-widest">View Trophies</button>
-                    </div>
+                    <button class="btn-gamified bg-white text-black px-8 py-3 rounded-xl font-bold uppercase text-[10px] tracking-widest">Pre-Order</button>
                 </div>
             </div>
         </section>
 
-        <section>
+        <section class="mb-20">
             <h3 class="text-[18px] font-bold tracking-[0.3em] text-slate-500 uppercase mb-8">Personalized Discovery</h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="game-grid">
-            </div>
+            <div id="game-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8 min-h-[100px]"></div>
         </section>
 
         <section class="mb-20">
             <div class="flex justify-between items-center mb-8">
-                <h3 class="text-[10px] font-bold tracking-[0.3em] text-slate-500 uppercase">Premium Store</h3>
-                <span class="text-blue-500 text-[10px] font-bold cursor-pointer hover:underline uppercase">View All</span>
+                <h3 class="text-[18px] font-bold tracking-[0.3em] text-slate-500 uppercase">Premium Store</h3>
+                <span onclick="toggleStore(true)" class="text-blue-500 text-[15px] font-bold cursor-pointer hover:underline uppercase">View All</span>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="store-grid">
-            </div>
+            <div id="store-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8 min-h-[100px]"></div>
         </section>
 
         <section class="mb-20">
-            <h3 class="text-[10px] font-bold tracking-[0.3em] text-slate-500 uppercase mb-8">New Arrivals</h3>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6" id="new-games-grid">
-            </div>
+            <h3 class="text-[21px] font-bold tracking-[0.3em] text-slate-500 uppercase mb-8">New Arrivals</h3>
+            <div id="new-games-grid" class="grid grid-cols-2 md:grid-cols-4 gap-6 min-h-[100px]"></div>
         </section>
 
-        <div id="game-modal" class="fixed inset-0 z- hidden flex items-center justify-center p-6">
-            <div class="absolute inset-0 bg-black/80 backdrop-blur-xl" onclick="closeModal()"></div>
-
-            <div class="relative bg-[#0a0a0a] border border-white/10 w-full max-w-2xl rounded-[40px] overflow-hidden shadow-2xl transition-all scale-95 opacity-0" id="modal-container">
-                <button onclick="closeModal()" class="absolute top-6 right-6 z-50 text-white/50 hover:text-white text-2xl">&times;</button>
-
-                <div class="flex flex-col md:flex-row">
-                    <div class="md:w-1/2 h-64 md:h-auto overflow-hidden">
-                        <img id="modal-img" src="" class="w-full h-full object-cover">
+        <section class="mb-20">
+            <div class="ps-plus-card bg-[#0a0a0a] rounded-[40px] p-10 border border-white/5 relative overflow-hidden group transition-all duration-500">
+                <i class="fa-solid fa-plus absolute -top-10 -right-10 text-[200px] text-yellow-500/5 rotate-12 group-hover:text-yellow-500/10 transition-all duration-700"></i>
+                <div class="relative z-10">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-12 h-12 bg-yellow-500 rounded-2xl flex items-center justify-center shadow-[0_0_20px_rgba(234,179,8,0.4)]"><i class="fa-solid fa-plus text-black text-xl"></i></div>
+                        <div><h3 class="text-2xl font-black italic uppercase">PS Plus Deluxe</h3><p class="text-[9px] text-yellow-500 font-bold tracking-[0.4em] uppercase">Active Membership</p></div>
                     </div>
-                    <div class="md:w-1/2 p-8 flex flex-col justify-center">
-                        <span id="modal-tag" class="text-blue-500 text-[9px] font-black tracking-widest uppercase mb-2"></span>
-                        <h2 id="modal-title" class="text-3xl font-black italic uppercase mb-4"></h2>
-                        <p id="modal-desc" class="text-slate-400 text-xs mb-8 leading-relaxed"></p>
-                        <div class="flex gap-4">
-                            <button class="bg-blue-600 text-white px-6 py-2 rounded-xl font-bold text-[10px] uppercase tracking-widest">Buy Now</button>
-                            <button class="bg-white/5 text-white px-6 py-2 rounded-xl font-bold text-[10px] uppercase tracking-widest border border-white/10">Add to Wishlist</button>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-white/5 p-6 rounded-3xl border border-white/5 hover:bg-yellow-500/10 hover:border-yellow-500/30 transition-all cursor-pointer group/item"><i class="fa-solid fa-gamepad text-yellow-500 mb-4 group-hover/item:scale-125 transition-transform"></i><p class="text-[10px] font-black uppercase mb-1">Game Catalog</p><p class="text-[10px] text-slate-500 leading-tight">400+ titles included.</p></div>
+                        <div class="bg-white/5 p-6 rounded-3xl border border-white/5 hover:bg-yellow-500/10 hover:border-yellow-500/30 transition-all cursor-pointer group/item"><i class="fa-solid fa-cloud text-yellow-500 mb-4 group-hover/item:scale-125 transition-transform"></i><p class="text-[10px] font-black uppercase mb-1">Cloud Saves</p><p class="text-[10px] text-slate-500 leading-tight">Sync across PS4/PS5.</p></div>
+                        <div class="bg-white/5 p-6 rounded-3xl border border-white/5 hover:bg-yellow-500/10 hover:border-yellow-500/30 transition-all cursor-pointer group/item"><i class="fa-solid fa-tag text-yellow-500 mb-4 group-hover/item:scale-125 transition-transform"></i><p class="text-[10px] font-black uppercase mb-1">Exclusive Deals</p><p class="text-[10px] text-slate-500 leading-tight">Extra 10% off store titles.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <aside class="w-64 bg-black/40 border-l border-white/5 p-6 flex flex-col shrink-0 z-20">
+        <h2 class="text-xl text-center font-black italic uppercase mb-8 tracking-[0.2em] text-blue-500">Friends</h2>
+        <div class="space-y-6 flex-1" id="social-list"></div>
+        <div class="p-5 bg-gradient-to-br from-blue-900/20 to-transparent rounded-[24px] border border-blue-500/10 mt-auto">
+            <p class="text-[13px] text-blue-400 font-black uppercase mb-2 tracking-widest">Community Quest</p>
+            <p class="text-[11px] text-slate-400 leading-tight">Join **Viper_01** to unlock 2x XP.</p>
+        </div>
+    </aside>
+
+    <div id="expanded-store" class="fixed inset-0 z- hidden overflow-y-auto bg-[#020202] transition-all duration-500 translate-y-full">
+        <div class="p-12 max-w-7xl mx-auto">
+            <div class="flex justify-between items-center mb-12">
+                <h2 class="text-4xl font-black italic uppercase tracking-tighter">Premium Catalog</h2>
+                <button onclick="toggleStore(false)" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div id="expanded-grid" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6"></div>
+        </div>
+    </div>
+
+    <div id="achievement-page" class="fixed inset-0 z- hidden bg-[#020202] overflow-y-auto transition-all duration-500 translate-x-full">
+        <div class="max-w-6xl mx-auto p-12">
+
+            <header class="flex items-center justify-between mb-16">
+                <div class="flex items-center gap-8">
+                    <div class="relative group">
+                        <div class="w-32 h-32 rounded-full border-4 border-blue-600 p-1 shadow-[0_0_40px_rgba(37,99,235,0.3)] group-hover:shadow-blue-500 transition-all duration-500">
+                            <img src="assets/aa.jpg" class="w-full h-full rounded-full object-cover">
                         </div>
+                        <div class="absolute -bottom-2 -right-2 bg-blue-600 px-4 py-1 rounded-full text-[10px] font-black italic shadow-lg">LVL 42</div>
+                    </div>
+                    <div>
+                        <h2 class="text-4xl font-black italic uppercase tracking-tighter">Devesh <span class="text-blue-500">_talisman</span></h2>
+                        <p class="text-slate-500 text-[10px] uppercase font-bold tracking-[0.4em] mt-2">First-Year AI & DS Student • Mumbai University</p>
+                    </div>
+                </div>
+                <button onclick="toggleAchievements(false)" class="w-14 h-14 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-all text-2xl">
+                    <i class="fa-solid fa-arrow-left-long"></i>
+                </button>
+            </header>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
+                <div class="bg-white/5 border border-white/10 p-6 rounded-3xl text-center">
+                    <p class="text-[9px] text-slate-500 font-bold uppercase mb-2">Total Playtime</p>
+                    <h4 class="text-2xl font-black italic">1,420H</h4>
+                </div>
+                <div class="bg-white/5 border border-white/10 p-6 rounded-3xl text-center">
+                    <p class="text-[9px] text-slate-500 font-bold uppercase mb-2">Platinum</p>
+                    <h4 class="text-2xl font-black italic text-blue-400">12</h4>
+                </div>
+                <div class="bg-white/5 border border-white/10 p-6 rounded-3xl text-center border-blue-500/20">
+                    <p class="text-[9px] text-blue-500 font-bold uppercase mb-2">Global Rank</p>
+                    <h4 class="text-2xl font-black italic text-blue-500">Top 1.2%</h4>
+                </div>
+                <div class="bg-white/5 border border-white/10 p-6 rounded-3xl text-center">
+                    <p class="text-[9px] text-slate-500 font-bold uppercase mb-2">Completion Rate</p>
+                    <h4 class="text-2xl font-black italic">84%</h4>
+                </div>
+            </div>
+
+            <div class="bg-white/5 border border-white/10 rounded-[40px] p-10 mb-16 shadow-2xl">
+                <h3 class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-8 text-center">Engagement Intensity (2025-2026)</h3>
+                <div class="flex justify-center overflow-x-auto">
+                    <div id="playtime-heatmap" class="grid grid-rows-7 grid-flow-col gap-1.5"></div>
+                </div>
+                <div class="flex justify-end gap-3 mt-6 text-[9px] text-slate-500 font-bold uppercase items-center">
+                    <span>Relax</span>
+                    <div class="flex gap-1">
+                        <div class="w-3.5 h-3.5 bg-white/5 rounded-sm"></div>
+                        <div class="w-3.5 h-3.5 bg-blue-900/40 rounded-sm"></div>
+                        <div class="w-3.5 h-3.5 bg-blue-600/60 rounded-sm"></div>
+                        <div class="w-3.5 h-3.5 bg-blue-500 rounded-sm shadow-[0_0_8px_#3b82f6]"></div>
+                    </div>
+                    <span>Grind</span>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-8">Recent Achievement Feed</h3>
+                <div class="mt-12">
+                    <h3 class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-10 pl-2">Contribution Activity</h3>
+
+                    <div class="relative space-y-12 pl-8 before:content-[''] before:absolute before:left-[11px] before:top-2 before:bottom-0 before:w-[2px] before:bg-gradient-to-b before:from-blue-600 before:to-transparent" id="achievement-timeline">
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-    </main>
-
-    <aside class="w-64 bg-black/40 border-l border-white/5 p-6 flex flex-col shrink-0">
-        <h2 class="text-xl text-center font-black italic uppercase mb-8 tracking-[0.2em] text-blue-500">Friends</h2>
-
-        <div class="space-y-6 flex-1" id="social-list"></div>
-
-        <div class="p-5 bg-gradient-to-br from-blue-900/20 to-transparent rounded-[24px] border border-blue-500/10 mt-auto">
-            <p class="text-[13px] text-blue-400 font-black uppercase mb-2 tracking-widest">Community Quest</p>
-            <p class="text-[11px] text-slate-400 leading-tight">Join **Viper_01** to unlock the 2x XP Party Boost.</p>
+    <div id="community-page" class="fixed inset-0 z- hidden bg-[#010101] overflow-y-auto transition-all duration-500 translate-x-full">
+        <div class="max-w-6xl mx-auto p-12">
+            <header class="flex justify-between items-center mb-12"><div><h2 class="text-4xl font-black italic uppercase tracking-tighter">Community <span class="text-blue-500">Pulse</span></h2><p class="text-[9px] text-blue-400 font-bold tracking-[0.4em] uppercase mt-2">AI-Moderated Forum</p></div><button onclick="toggleCommunity(false)" class="w-14 h-14 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-all text-2xl"><i class="fa-solid fa-arrow-left-long"></i></button></header>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8"><div class="lg:col-span-1 space-y-6"><h3 class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Active Guilds</h3><div class="space-y-4" id="guild-list"></div></div><div class="lg:col-span-2 space-y-6"><h3 class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Trending Discussions</h3><div class="space-y-4" id="forum-topics"></div></div></div>
         </div>
-    </aside>
+    </div>
+
+    <div id="game-modal" class="fixed inset-0 z- hidden flex items-center justify-center p-6">
+        <div class="absolute inset-0 bg-black/90 backdrop-blur-xl" onclick="closeModal()"></div>
+        <div class="relative bg-[#0a0a0a] border border-white/10 w-full max-w-2xl rounded-[40px] overflow-hidden shadow-2xl transition-all scale-95 opacity-0" id="modal-container">
+            <button onclick="closeModal()" class="absolute top-6 right-6 z-50 text-white/50 text-2xl font-light hover:text-white">&times;</button>
+            <div class="flex flex-col md:flex-row"><div class="md:w-1/2 h-64 md:h-auto overflow-hidden"><img id="modal-img" src="" class="w-full h-full object-cover"></div><div class="md:w-1/2 p-10 flex flex-col justify-center"><span id="modal-tag" class="text-blue-500 text-[9px] font-black tracking-widest uppercase mb-2"></span><h2 id="modal-title" class="text-3xl font-black italic uppercase mb-4"></h2><p id="modal-desc" class="text-slate-400 text-xs mb-8 leading-relaxed"></p><button class="bg-blue-600 text-white px-8 py-3 rounded-xl font-bold uppercase tracking-widest text-[10px]">Buy Now</button></div></div>
+        </div>
+    </div>
 </div>
 <script src="js.js"></script>
 </body>
