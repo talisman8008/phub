@@ -67,7 +67,7 @@ h1, h2, h3, h4 {
 }
 
 .ai-hover-eyebrow {
-    font-size: 8px;
+    font-size: 10px;
     font-weight: 800;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -84,11 +84,11 @@ h1, h2, h3, h4 {
     border: 1px solid rgba(59, 130, 246, 0.3);
     padding: 2px 8px;
     border-radius: 6px;
-    font-size: 8px;
+    font-size: 10px;
 }
 
 .ai-hover-title {
-    font-size: 13px;
+    font-size: 18px;
     font-weight: 900;
     font-style: italic;
     text-transform: uppercase;
@@ -99,7 +99,7 @@ h1, h2, h3, h4 {
 }
 
 .ai-hover-reason {
-    font-size: 11px;
+    font-size: 13px;
     line-height: 1.65;
     color: rgba(255, 255, 255, 0.58);
     flex: 1;
