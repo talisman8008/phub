@@ -10,23 +10,27 @@
 </head>
 <body class="bg-black text-white font-sans overflow-hidden">
 <div class="flex h-screen">
-    <nav class="w-20 bg-[#050505] border-r border-white/5 flex flex-col items-center py-10 space-y-12">
-        <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center font-black shadow-[0_0_20px_rgba(37,99,235,0.5)] cursor-pointer">
-            <i class="fa-brands fa-playstation fa-lg" style="color: rgb(255, 255, 255);"></i>
-        </div>
-        <div class="flex flex-col gap-10  text-xl">
-            <span class="hover:opacity-100 cursor-pointer transition-all">
+    <nav id="sidebar-nav" class="relative w-20 bg-[#020202] border-r border-white/5 flex flex-col items-center py-10 space-y-12 shrink-0 overflow-hidden">
 
-                <i class="fa-regular fa-house" style="color: rgb(255, 255, 255);"></i>
-            </span>
-            <span class="opacity-100 text-blue-500 cursor-pointer">
-                    <i class="fa-solid fa-wand-sparkles" style="color: rgb(244, 244, 244);"></i>
-            </span>
-            <span class="hover:opacity-100 cursor-pointer transition-all">
-                <i class="fa-solid fa-medal" style="color: rgb(255, 255, 255);"></i>
-            </span>
-            <span class="hover:opacity-100 cursor-pointer transition-all">
-<i class="fa-solid fa-people-roof" style="color: rgb(255, 255, 255);"></i>            </span>
+        <div id="nav-scroll-fill" class="absolute top-0 left-0 w-full bg-blue-600/10 border-r-2 border-blue-500 transition-all duration-300 ease-out z-0" style="height: 0%;"></div>
+
+        <div class="z-10 w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center font-black shadow-[0_0_20px_#2563eb] cursor-pointer">
+            <i class="fa-brands fa-playstation fa-lg" style="color: white;"></i>
+        </div>
+
+        <div class="z-10 flex flex-col gap-12 text-xl">
+        <span class="nav-icon opacity-30 transition-all duration-300">
+            <i class="fa-regular fa-house" style="color: white;"></i>
+        </span>
+            <span class="nav-icon opacity-100 text-blue-500 transition-all duration-300">
+            <i class="fa-solid fa-wand-sparkles" style="color: rgb(244, 244, 244);"></i>
+        </span>
+            <span class="nav-icon opacity-30 transition-all duration-300">
+            <i class="fa-solid fa-medal" style="color: white;"></i>
+        </span>
+            <span class="nav-icon opacity-30 transition-all duration-300">
+            <i class="fa-solid fa-people-roof" style="color: white;"></i>
+        </span>
         </div>
     </nav>
 
@@ -36,13 +40,14 @@
                 <h1 id="main-title" class="text-5xl font-black italic tracking-tighter uppercase transition-all duration-500">The Latest</h1>
                 <p class="text-blue-500 font-bold tracking-[0.4em] text-[10px] mt-2 uppercase">AI-Optimized for Devesh</p>
             </div>
+                        <!--    progress bar-->
             <div class="flex items-center gap-6 bg-white/5 px-6 py-4 rounded-[24px] border border-white/10 backdrop-blur-md">
                 <div class="text-right">
                     <p class="text-[9px] text-slate-500 font-bold uppercase tracking-widest">Next Rank: Diamond</p>
                     <p class="text-lg font-black italic">LEVEL 42</p>
                 </div>
                 <div class="w-32 h-2 bg-white/10 rounded-full overflow-hidden">
-                    <div id="xp-bar" class="bg-blue-600 h-full w-[75%] shadow-[0_0_15px_#2563eb] transition-all duration-1000"></div>
+                    <div id="xp-bar" class="bg-blue-600 h-full w-[40%] shadow-[0_0_15px_#2563eb] transition-all duration-1000 ease-out"></div>
                 </div>
             </div>
         </header>

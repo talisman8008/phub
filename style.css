@@ -18,3 +18,21 @@
 h1, h2, h3, h4 {
     letter-spacing: -0.02em;
 }
+
+/*progress bar stylin*/
+#xp-bar {
+    background: linear-gradient(90deg, #2563eb, #60a5fa);
+    position: relative;
+}
+/* pulse animation for the progress bar */
+#xp-bar::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    animation: shine 2s infinite;
+}
+@keyframes shine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
