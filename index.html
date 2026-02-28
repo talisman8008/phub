@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlayStation | Reimagined Ecosystem</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/9768e49601.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-black text-white font-sans overflow-hidden">
+<div class="flex h-screen">
+    <nav class="w-20 bg-[#050505] border-r border-white/5 flex flex-col items-center py-10 space-y-12">
+        <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center font-black shadow-[0_0_20px_rgba(37,99,235,0.5)] cursor-pointer">
+            <i class="fa-brands fa-playstation fa-lg" style="color: rgb(255, 255, 255);"></i>
+        </div>
+        <div class="flex flex-col gap-10  text-xl">
+            <span class="hover:opacity-100 cursor-pointer transition-all">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+    <path fill="rgb(244, 244, 244)" d="M304 70.1C313.1 61.9 326.9 61.9 336 70.1L568 278.1C577.9 286.9 578.7 302.1 569.8 312C560.9 321.9 545.8 322.7 535.9 313.8L527.9
+    306.6L527.9 511.9C527.9 547.2 499.2 575.9 463.9 575.9L175.9 575.9C140.6 575.9 111.9 547.2 111.9 511.9L111.9 306.6L103.9 313.8C94 322.6 78.9 321.8 70 312C61.1 302.2
+    62 287 71.8 278.1L304 70.1zM320 120.2L160 263.7L160 512C160 520.8 167.2 528 176 528L224 528L224 424C224 384.2 256.2 352 296 352L344 352C383.8 352 416 384.2 416 424L416
+     528L464 528C472.8 528 480 520.8 480 512L480 263.7L320 120.3zM272 528L368 528L368 424C368 410.7 357.3 400 344 400L296 400C282.7 400 272 410.7 272 424L272 528z"/></svg>
+            </span>
+            <span class="opacity-100 text-blue-500 cursor-pointer">
+                    <i class="fa-solid fa-wand-sparkles" style="color: rgb(244, 244, 244);"></i>
+            </span>
+            <span class="hover:opacity-100 cursor-pointer transition-all">
+                <i class="fa-solid fa-medal" style="color: rgb(255, 255, 255);"></i>
+            </span>
+            <span class="hover:opacity-100 cursor-pointer transition-all">👥</span>
+        </div>
+    </nav>
+
+    <main class="flex-1 p-12 overflow-y-auto bg-gradient-to-tr from-black via-[#080c14] to-black">
+        <header class="flex justify-between items-end mb-12">
+            <div>
+                <h1 id="main-title" class="text-5xl font-black italic tracking-tighter uppercase transition-all duration-500">The Latest</h1>
+                <p class="text-blue-500 font-bold tracking-[0.4em] text-[10px] mt-2 uppercase">AI-Optimized for Devesh</p>
+            </div>
+            <div class="flex items-center gap-6 bg-white/5 px-6 py-4 rounded-[24px] border border-white/10 backdrop-blur-md">
+                <div class="text-right">
+                    <p class="text-[9px] text-slate-500 font-bold uppercase tracking-widest">Next Rank: Diamond</p>
+                    <p class="text-lg font-black italic">LEVEL 42</p>
+                </div>
+                <div class="w-32 h-2 bg-white/10 rounded-full overflow-hidden">
+                    <div id="xp-bar" class="bg-blue-600 h-full w-[75%] shadow-[0_0_15px_#2563eb] transition-all duration-1000"></div>
+                </div>
+            </div>
+        </header>
+
+        <section class="mb-16">
+            <div class="relative group h-[400px] rounded-[40px] overflow-hidden border border-white/10 cursor-pointer shadow-2xl transition-all hover:border-blue-500/50">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10"></div>
+                <div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000"
+                     style="background-image: url('http://googleusercontent.com/image_collection/image_retrieval/16675819212298029716_0')"></div>
+
+                <div class="absolute bottom-10 left-10 z-20">
+                    <div class="bg-blue-600 text-[9px] font-black px-3 py-1 rounded-full mb-4 inline-block tracking-widest uppercase italic">98% Compatibility Match</div>
+                    <h2 class="text-4xl font-black italic uppercase mb-2">Elden Ring: Shadow of the Erdtree</h2>
+                    <p class="text-slate-400 max-w-md text-sm mb-6 leading-relaxed">Based on your Bloodborne Platinum, this expansion offers massive XP gains.</p>
+                    <div class="flex gap-4">
+                        <button class="bg-white text-black px-8 py-3 rounded-xl font-bold hover:bg-blue-600 hover:text-white transition-all uppercase text-[10px] tracking-widest">Pre-Order</button>
+                        <button class="bg-white/10 backdrop-blur-md px-8 py-3 rounded-xl font-bold border border-white/10 hover:bg-white/20 transition-all uppercase text-[10px] tracking-widest">View Trophies</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h3 class="text-[10px] font-bold tracking-[0.3em] text-slate-500 uppercase mb-8">Personalized Discovery</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="game-grid">
+            </div>
+        </section>
+    </main>
+
+    <aside class="w-80 bg-black/40 border-l border-white/5 p-10 flex flex-col">
+        <h2 class="text-lg font-black italic uppercase mb-10 tracking-widest">Social Lobby</h2>
+        <div class="space-y-8 flex-1" id="social-list">
+        </div>
+        <div class="p-6 bg-gradient-to-br from-blue-900/20 to-transparent rounded-[32px] border border-blue-500/20">
+            <p class="text-[9px] text-blue-400 font-black uppercase mb-2 tracking-widest">Gamification Tip</p>
+            <p class="text-xs text-slate-400 leading-relaxed">Play with **Viper_01** today to earn a 2x XP Party Boost!</p>
+        </div>
+    </aside>
+</div>
+<script src="js.js"></script>
+</body>
+</html>

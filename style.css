@@ -1,0 +1,20 @@
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #000; }
+::-webkit-scrollbar-thumb { background: #1a1a1a; border-radius: 10px; }
+
+/* Immersive Glows */
+.game-card {
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.game-card:hover {
+    transform: translateY(-10px);
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(37, 99, 235, 0.4);
+}
+
+/* Text Polish */
+h1, h2, h3, h4 {
+    letter-spacing: -0.02em;
+}
