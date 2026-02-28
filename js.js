@@ -1,3 +1,12 @@
+// Rank Themes
+const rankThemes = [
+    { name: "Diamond",  color: "#2563eb", glow: "#1d4ed8", label: "LEVEL 42" },
+    { name: "Gold",     color: "#f59e0b", glow: "#d97706", label: "LEVEL 43" },
+    { name: "Amethyst", color: "#a855f7", glow: "#9333ea", label: "LEVEL 44" },
+    { name: "Emerald",  color: "#10b981", glow: "#059669", label: "LEVEL 45" },
+    { name: "Ruby",     color: "#ef4444", glow: "#dc2626", label: "LEVEL 46" },
+];
+let currentRank = 0;
 // 1. mock data
 const gameData = [
     {
@@ -140,24 +149,120 @@ function triggerLevelUp() {
     const bar = document.getElementById('xp-bar');
     const title = document.getElementById('main-title');
 
-    if (bar) {
-        bar.style.width = '95%';
-        bar.classList.add('animate-pulse');
+    if (!bar) return;
 
+    // Flash bar to 100% first
+    bar.style.width = '100%';
+    bar.classList.add('animate-pulse');
+
+    setTimeout(() => {
+        // Advance rank
+        currentRank = (currentRank + 1) % rankThemes.length;
+        const theme = rankThemes[currentRank];
+
+        // Apply new color everywhere
+        applyTheme(theme);
+
+        // Reset bar to 10% with new color
+        bar.style.width = '10%';
+        bar.classList.remove('animate-pulse');
+
+        // Flash title
         if (title) {
-            const originalText = title.innerText;
-            title.innerText = "QUEST TRACKED! +200 XP";
-            title.style.color = "#3b82f6";
-
+            title.innerText = `RANK UP! ${theme.name} UNLOCKED`;
+            title.style.color = theme.color;
             setTimeout(() => {
-                title.innerText = originalText;
+                title.innerText = "The Latest";
                 title.style.color = "white";
-                bar.classList.remove('animate-pulse');
             }, 2500);
         }
-    }
+    }, 800);
 }
 
+function applyTheme(theme) {
+    const color = theme.color;
+    const glow  = theme.glow;
+
+    // CSS variable injection
+    document.documentElement.style.setProperty('--theme-color', color);
+    document.documentElement.style.setProperty('--theme-glow', glow);
+
+    // XP bar
+    const bar = document.getElementById('xp-bar');
+    if (bar) {
+        bar.style.background = `linear-gradient(90deg, ${color}, ${glow})`;
+        bar.style.boxShadow  = `0 0 15px ${color}`;
+    }
+
+    // PS logo button
+    const logo = document.querySelector('.bg-blue-600.rounded-full');
+    if (logo) {
+        logo.style.background  = color;
+        logo.style.boxShadow   = `0 0 20px ${color}`;
+    }
+
+    // Sidebar aura fill
+    const aura = document.getElementById('nav-scroll-fill');
+    if (aura) {
+        aura.style.background    = `${color}1a`;
+        aura.style.borderColor   = color;
+    }
+
+    // Nav scroll fill border
+    const navFill = document.getElementById('nav-scroll-fill');
+    if (navFill) navFill.style.borderRightColor = color;
+
+    // "AI-Optimized" subtitle
+    const subtitle = document.querySelector('p.text-blue-500');
+    if (subtitle) subtitle.style.color = color;
+
+    // Friends heading
+    const friendsHead = document.querySelector('aside h2');
+    if (friendsHead) friendsHead.style.color = color;
+
+    // Community quest card accent
+    const questCard = document.querySelector('aside .text-blue-400');
+    if (questCard) questCard.style.color = color;
+
+    // Level badge area
+    const levelText = document.querySelector('.text-lg.font-black');
+    if (levelText) levelText.innerText = theme.label;
+
+    // Next rank label
+    const rankLabel = document.querySelector('.text-\\[9px\\].text-slate-500');
+    if (rankLabel) rankLabel.innerText = `Next Rank: ${rankThemes[(currentRank + 1) % rankThemes.length].name}`;
+
+    // AI hover overlay badges and buttons — re-style via CSS variable
+    document.querySelectorAll('.ai-hover-eyebrow').forEach(el => el.style.color = color);
+    document.querySelectorAll('.ai-hover-badge').forEach(el => {
+        el.style.color = color;
+        el.style.borderColor = `${color}55`;
+        el.style.background = `${color}22`;
+    });
+    document.querySelectorAll('.ai-hover-btn').forEach(el => {
+        el.style.color = color;
+        el.style.borderColor = `${color}55`;
+        el.style.background = `${color}22`;
+    });
+    document.querySelectorAll('.text-blue-500.bg-blue-500\\/10').forEach(el => {
+        el.style.color = color;
+        el.style.background = `${color}1a`;
+        el.style.borderColor = `${color}33`;
+    });
+
+    // Hero badge
+    const heroBadge = document.querySelector('.bg-blue-600.text-\\[9px\\]');
+    if (heroBadge) heroBadge.style.background = color;
+
+    // Track buttons
+    document.querySelectorAll('.bg-blue-600').forEach(el => {
+        el.style.background = color;
+    });
+
+    // Community quest border
+    const questBox = document.querySelector('aside .border-blue-500\\/10');
+    if (questBox) questBox.style.borderColor = `${color}30`;
+}
 
 
 
